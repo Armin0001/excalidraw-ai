@@ -1,0 +1,10 @@
+﻿node_modules
+dist
+.dev.vars
+.wrangler
+*.log
+openspec
+notes
+lessons/.vitepress/cache
+notes
+evals/results
