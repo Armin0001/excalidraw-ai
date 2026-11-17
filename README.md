@@ -62,7 +62,7 @@ npm run eval   # runs all scorers, results appear in Braintrust dashboard
 - **Overlap rules that match what looks wrong to a person.** Arrows and lines are skipped (they cross shapes on purpose), a label inside its own shape is skipped, but labels sitting on arrows are checked, and 4px of overlap is allowed so shapes placed edge to edge don't count.
 - **Arrows can connect to shapes drawn in an earlier call.** Excalidraw's skeleton converter only resolves arrow ends within one batch, so [`cross-call-bindings.ts`](src/context/cross-call-bindings.ts) patches the bindings afterwards. That keeps the system prompt's promise that arrows may reference shapes "already on the canvas".
 - **Deterministic, graded scorers.** Most scorers return a fraction (for example, the share of arrows bound at both ends) instead of pass/fail, so a change that fixes one arrow out of ten still shows up, and they return `null` when a check doesn't apply, so unrelated cases don't skew the averages.
-- **Retrieval for precision, web search for freshness.** A private Upstash Vector index of reference docs keeps domain diagrams (OAuth, Kubernetes networking, Postgres internals) accurate; Tavily covers systems newer than the model.
+- **Retrieval for precision, web search for freshness.** A private Upstash Vector index of reference docs keeps domain diagrams (OAuth, Kubernetes networking, Postgres internals) accurate; Tavily covers systems newer than the model. The trade-off is one more service to run and a corpus to re-embed (`npm run embed`) whenever the reference docs change.
 
 ## Tests
 
