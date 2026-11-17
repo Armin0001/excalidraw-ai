@@ -121,5 +121,6 @@ export function countOverlapEligiblePairs(elements: unknown[]): number {
   for (const el of els) {
     if (isEligible(el, typeById)) n += 1;
   }
-  return (n * (n - 1)) / 2;
+  // Guard n < 2: with n = 0 the formula gives -0, which is === 0 but shows up oddly in eval metadata.
+  return n < 2 ? 0 : (n * (n - 1)) / 2;
 }
